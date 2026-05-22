@@ -1,0 +1,47 @@
+﻿/// <summary>
+/// PlayerPanel Logic层 - 用户编写
+/// </summary>
+
+using MieMieFrameWork;
+using MieMieFrameWork.UI;
+using UnityEngine;
+using UnityEngine.UI;
+
+internal class PlayerPanel : UIWindowBase
+{
+    internal PlayerPanelGen View { get; private set; }
+
+    internal protected override void OnAwake()
+    {
+        base.OnAwake();
+        View = UIContent.GetComponent<PlayerPanelGen>();
+
+        View.BtnPauseBtn.onClick.AddListener(OnBtnPauseBtnClick);
+    }
+
+    internal protected override void OnShow()
+    {
+        base.OnShow();
+    }
+
+    internal protected override void OnHide()
+    {
+        base.OnHide();
+    }
+
+    internal protected override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
+    private void OnBtnPauseBtnClick()
+    {
+        UICoreMgr.Instance.ShowWindow<PausePanel>();
+    }
+
+    private void UpdateGoldNumber()
+    {
+        // TODO: 更新金币数量
+    }
+
+}

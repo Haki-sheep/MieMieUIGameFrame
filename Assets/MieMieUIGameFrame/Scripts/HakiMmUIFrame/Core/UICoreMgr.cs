@@ -19,7 +19,7 @@ namespace MieMieFrameWork.UI
     /// UI核心管理类
     /// </summary>
     [Serializable]
-    public class UICoreMgr : MonoBehaviour
+    public class UICoreMgr : SingletonMono<UICoreMgr>
     {
         //堆栈系统
         private UIStack uiStack ;
@@ -61,7 +61,7 @@ namespace MieMieFrameWork.UI
             uiPrefab.transform.SetParent(UIRoot, false);
             uiWindow.BindGameObject(uiPrefab, UICamera);
             uiWindow.ApplyAniamtion = isUseAnimation;
-
+            // uiWindow.UIGameObject.transform.SetAsLastSibling();
             uiDic.Add(uiName, uiWindow);
 
             uiWindow.OnAwake();

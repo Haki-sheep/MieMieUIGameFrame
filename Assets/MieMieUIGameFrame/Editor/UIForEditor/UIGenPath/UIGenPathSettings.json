@@ -88,17 +88,17 @@
         {
             "guid": "0d550dcede307af4b9f42a4aa5a9f2d4",
             "prefabName": "MainPanel",
-            "folder": "Assets/MieMieUIGameFrame/Scripts/UIScripts"
+            "folder": "Assets/MieMieUIGameFrame/Scripts/UIStandeModel/UI/Main"
         },
         {
             "guid": "990612347cb3c7846b15b72788174826",
             "prefabName": "PausePanel",
-            "folder": "Assets/MieMieUIGameFrame/Scripts/UIStandeModel/Pause"
+            "folder": "Assets/MieMieUIGameFrame/Scripts/UIStandeModel/UI/Pause"
         },
         {
             "guid": "43b4c8d14c015584d9ff9825808ef6a9",
             "prefabName": "PlayerPanel",
-            "folder": "Assets/MieMieUIGameFrame/Scripts/UIStandeModel/Player"
+            "folder": "Assets/MieMieUIGameFrame/Scripts/UIStandeModel/UI/Player"
         },
         {
             "guid": "785d170f91fb588409a2b0f6d308a1b6",
