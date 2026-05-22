@@ -49,9 +49,11 @@ internal class PausePanel : UIWindowBase
     }
     private void OnBtnExitGameBtnClick()
     {
+        GameObject.Destroy(GameObject.Find("UIRoot"));
+        GameObject.Destroy(GameObject.Find("Main Camera"));
         SceneManager.LoadScene("MainScene");
-        UICoreMgr.Instance.ShowWindow<MainPanel>();
-        UICoreMgr.Instance.HideWindow<PausePanel>();
+
+
     }
 
 
