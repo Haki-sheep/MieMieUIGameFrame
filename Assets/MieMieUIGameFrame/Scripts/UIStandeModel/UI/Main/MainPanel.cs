@@ -17,6 +17,8 @@ internal class MainPanel : UIWindowBase
         base.OnAwake();
         View = UIContent.GetComponent<MainPanelGen>();
 
+        UICoreMgr.Instance.BindMainCameraStack();
+
         View.BtnStart.onClick.AddListener(OnBtnStartClick);
         View.BtnContinue.onClick.AddListener(OnBtnContinueClick);
         View.BtnSetting.onClick.AddListener(OnBtnSettingClick);
@@ -42,8 +44,9 @@ internal class MainPanel : UIWindowBase
     {
         // 切换场景
         Debug.Log("切换场景");
-        SceneManager.LoadScene("Temp1");
         UICoreMgr.Instance.HideWindow<MainPanel>();
+        SceneManager.LoadScene("Temp1");
+        UICoreMgr.Instance.BindMainCameraStack();
         UICoreMgr.Instance.ShowWindow<PlayerPanel>();
     }
 

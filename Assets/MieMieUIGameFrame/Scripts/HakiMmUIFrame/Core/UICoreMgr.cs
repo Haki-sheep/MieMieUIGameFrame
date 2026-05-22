@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace MieMieFrameWork.UI
 {
@@ -31,11 +32,32 @@ namespace MieMieFrameWork.UI
 
         [SerializeField] private Camera UICamera;
 
+        public Camera UICam { get; private set; }
+
         public void Init()
-        {  
-            UIRoot = this.transform;
-            UICamera = UIRoot.GetComponentInChildren<Camera>();
-            uiStack =new();
+        {
+            UIRoot = transform;
+            UICamera = GetComponentInChildren<Camera>();
+            UICam = UICamera;
+            if (uiStack == null)
+                uiStack = new UIStack();
+        }
+
+        // 把 UICamera 挂到当前场景 Main Camera 的 Stack 上
+        public void BindMainCameraStack()
+        {
+            if (UICamera == null) return;
+
+            var uiData = UICamera.GetUniversalAdditionalCameraData();
+            uiData.renderType = CameraRenderType.Overlay;
+
+            Camera main = Camera.main;
+            if (main == null) return;
+
+            var mainData = main.GetUniversalAdditionalCameraData();
+            mainData.cameraStack.Remove(UICamera);
+            if (!mainData.cameraStack.Contains(UICamera))
+                mainData.cameraStack.Add(UICamera);
         }
         public T ShowWindow<T>(bool isUseAnimation = false, Action action = null) where T : UIDataBase, new()
         {
@@ -91,9 +113,9 @@ namespace MieMieFrameWork.UI
                 uiWindow.ApplyAniamtion = isUseAnimation;
                 uiWindow.OnDestroy();
                 uiDic.Remove(uiName);
+                AddressableMgr.DestroyObject(uiWindow.UIGameObject);
             }
             action?.Invoke();
-            AddressableMgr.DestroyObject(uiWindow.UIGameObject);
         }
 
         /// <summary>

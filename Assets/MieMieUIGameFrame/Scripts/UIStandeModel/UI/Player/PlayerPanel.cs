@@ -16,6 +16,8 @@ internal class PlayerPanel : UIWindowBase
         base.OnAwake();
         View = UIContent.GetComponent<PlayerPanelGen>();
 
+        UICoreMgr.Instance.BindMainCameraStack();
+
         View.BtnPauseBtn.onClick.AddListener(OnBtnPauseBtnClick);
     }
 

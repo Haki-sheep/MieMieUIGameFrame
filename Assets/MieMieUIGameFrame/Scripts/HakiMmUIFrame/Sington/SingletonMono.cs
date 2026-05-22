@@ -23,9 +23,9 @@ namespace MieMieFrameWork
             }
         }
 
-        private void OnDisable()
+        protected virtual void OnDestroy()
         {
-            if (Instance != null)
+            if (Instance == this)
                 Instance = null;
         }
     }

@@ -5,6 +5,7 @@
 using MieMieFrameWork;
 using MieMieFrameWork.UI;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -49,11 +50,10 @@ internal class PausePanel : UIWindowBase
     }
     private void OnBtnExitGameBtnClick()
     {
-        GameObject.Destroy(GameObject.Find("UIRoot"));
-        GameObject.Destroy(GameObject.Find("Main Camera"));
-        SceneManager.LoadScene("MainScene");
-
-
+        Time.timeScale = 1;
+        UICoreMgr.Instance.HideWindow<PausePanel>();
+        UICoreMgr.Instance.CloseWindow<PlayerPanel>();
+        SceneManager.LoadSceneAsync("MainScene");
     }
 
 
